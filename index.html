@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction</title>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <style>
+        *{
+            background-color: ghostwhite;
+            cursor: pointer;
+            /* font-size: 13px; */
+            border-radius: 4px;
+        }
+        .btn btn-primary{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bold;
+            padding: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>P2P_ProsperLoanDataSet_Prediction</h1>
+    <div class="login">
+        <div class="text-center">
+            <form action="{{ url_for('predict')}}" method="post">
+                <div class="d-flex flex-row justify-content-center">
+                    <input type="text" name="Term" placeholder="Term" required="required" />
+                    <input type="text" name="BorrowerRate" placeholder="BorrowerRate" required="required" />
+                    <input type="text" name="ProsperScore" placeholder="ProsperScore" required="required" />
+                    <input type="text" name="CreditScoreRangeUpper" placeholder="CreditScoreRangeUpper"
+                        required="required" />
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <input type="text" name="TotalInquiries" placeholder="TotalInquiries" required="required" />
+                    <input type="text" name="CurrentDelinquencies" placeholder="CurrentDelinquencies"
+                        required="required" />
+                    <input type="text" name="AmountDelinquent" placeholder="AmountDelinquent" required="required" />
+                    <input type="text" name="DelinquenciesLast7Years" placeholder="DelinquenciesLast7Years"
+                        required="required" />
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <input type="text" name="PublicRecordsLast10Years" placeholder="PublicRecordsLast10Years"
+                        required="required" />
+                    <input type="text" name="PublicRecordsLast12Months" placeholder="PublicRecordsLast12Months"
+                        required="required" />
+                    <input type="text" name="RevolvingCreditBalance" placeholder="RevolvingCreditBalance"
+                        required="required" />
+                    <input type="text" name="BankcardUtilization" placeholder="BankcardUtilization"
+                        required="required" />
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <input type="text" name="AvailableBankcardCredit" placeholder="AvailableBankcardCredit"
+                        required="required" />
+                    <input type="text" name="TotalTrades" placeholder="TotalTrades" required="required" />
+                    <input type="text" name="TradesOpenedLast6Months" placeholder="TradesOpenedLast6Months"
+                        required="required" />
+                    <input type="text" name="DebtToIncomeRatio" placeholder="DebtToIncomeRatio" required="required" />
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <input type="text" name="StatedMonthlyIncome" placeholder="StatedMonthlyIncome"
+                        required="required" />
+                    <input type="text" name="MonthlyLoanPayment" placeholder="MonthlyLoanPayment" required="required" />
+                    <input type="text" name="InvestmentFromFriendsCount" placeholder="InvestmentFromFriendsCount"
+                        required="required" />
+                    <input type="text" name="Investors" placeholder="Investors" required="required" />
+                </div>
+                <div class="d-flex flex-row justify-content-center">
+                    <label for="ProsperRating">ProsperRating</label>
+                    <select id="ProsperRating" name="ProsperRating">
+                        <option value="0">AA</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                        <option value="5">E</option>
+                        <option value="6">HR</option>
+                        <option value="7">NC</option>
+                    </select>
+                    <br>
+                    <label for="IsBorrowerHomeowner">IsBorrowerHomeowner</label>
+                    <select id="IsBorrowerHomeowner" name="IsBorrowerHomeowner">
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                    <br>
+                    <label for="EmploymentStatus">EmploymentStatus</label>
+                    <select id="EmploymentStatus" name="EmploymentStatus">
+                        <option value="0">Full-time</option>
+                        <option value="1">Not available</option>
+                        <option value="2">Not employed</option>
+                        <option value="3">Other</option>
+                        <option value="4">Part-time</option>
+                        <option value="5">Retired</option>
+                        <option value="6">Self-employed</option>
+                        <option value="7">Employed</option>
+                    </select>
+                    <br>
+
+                    <label for="CurrentlyInGroup">CurrentlyInGroup</label>
+                    <select id="CurrentlyInGroup" name="CurrentlyInGroup">
+                        <option value="0">Yes</option>
+                        <option value="1">No</option>
+                    </select>
+                    <br>
+                </div>
+                <label for="IncomeRange">IncomeRange</label>
+                <select id="IncomeRange" name="IncomeRange">
+                    <option value="0">$100,000+</option>
+                    <option value="1">$1-24,999</option>
+                    <option value="1">$25,000-49,999</option>
+                    <option value="2">$50,000-74,999</option>
+                    <option value="3">$75,000-99,999</option>
+                    <option value="4">Not Employed</option>
+                    <option value="5">Not disclosed</option>
+                </select>
+                <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">Predict</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <br>
+    </div>
+</body>
+
+</html>
